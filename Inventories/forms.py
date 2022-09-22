@@ -17,8 +17,8 @@ class Item_Form(ModelForm):
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
-            'quantity': forms.TextInput(attrs={'class': 'form-control'}),
-            'total_price': forms.TextInput(attrs={'class': 'form-control'})
+            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+            'total_price': forms.NumberInput(attrs={'class': 'form-control', 'step': 0.01})
         }
 
         labels = {'name': 'Item Name', 'quantity': 'Quantity', 'total_price': 'Total Price', }
