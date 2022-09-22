@@ -34,7 +34,7 @@ def index(request):
             print("there was an error.")
 
     context = {'items': items, 'form': form}
-    return render(request, 'inventories/index.html', context)
+    return render(request, 'Inventories/index.html', context)
 
 # def index(request):
 #     return HttpResponse("Hello. This is the index page.")
