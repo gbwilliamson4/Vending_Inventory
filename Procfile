@@ -1,0 +1,1 @@
+web gunicorn MyInventory.wsgi:application --log-file -
