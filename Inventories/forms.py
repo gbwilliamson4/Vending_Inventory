@@ -22,3 +22,16 @@ class Item_Form(ModelForm):
         }
 
         labels = {'name': 'Item Name', 'quantity': 'Quantity', 'total_price': 'Total Price', }
+
+
+class Needed_Inventory_Form(ModelForm):
+    class Meta:
+        model = Needed_Inventory
+        fields = ('item',)
+
+        widgets = {
+            # 'item': forms.ComboField(),
+            'item': forms.Select(attrs={'class': 'form-control'}),
+        }
+
+        labels = {'item': 'Item Name'}

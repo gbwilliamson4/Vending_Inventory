@@ -14,7 +14,32 @@ class Item(models.Model):
 
 class Vending_Location(models.Model):
     location_name = models.CharField(max_length=35)
-    snack_prices = models.DecimalField(max_digits=4, decimal_places=2)
+    address = models.CharField(max_length=150)
 
     def __str__(self):
         return self.location_name
+
+
+class Vending_Inventory(models.Model):
+    location = models.ForeignKey(Vending_Location, on_delete=models.CASCADE)
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item_price = models.DecimalField(max_digits=4, decimal_places=2)
+
+    def __str__(self):
+        return str(self.location) + " - " + str(self.item)
+
+
+class Purchase_History(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    purchase_date = models.DateField()
+
+
+class Needed_Inventory(models.Model):
+    # item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    item = models.OneToOneField(Item, on_delete=models.CASCADE, related_name='neededinvs')
+    pending = models.BooleanField(default=False)
+    purchased = models.BooleanField(default=False)
+    admin_approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.item)
