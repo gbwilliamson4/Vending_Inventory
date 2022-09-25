@@ -8,6 +8,7 @@ class Item(models.Model):
     name = models.CharField(max_length=35)
     total_price = models.DecimalField(max_digits=4, decimal_places=2)
     quantity = models.IntegerField()
+    image_url = models.URLField(null=True, default=None)
 
     def __str__(self):
         return self.name

@@ -127,3 +127,12 @@ def purchase_history(request):
 
     return render(request, 'Inventories/purchase_history.html', context)
     # return HttpResponse("Hello. This is the purchase history page.")
+
+
+def delete(request, pk):
+    item = Needed_Inventory.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        item.delete()
+
+    return redirect('needed_inventory')

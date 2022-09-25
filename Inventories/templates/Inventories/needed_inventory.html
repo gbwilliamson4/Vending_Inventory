@@ -24,6 +24,7 @@
             <th scope="col">Item Name</th>
             <th scope="col">Total Price</th>
             <th scope="col">Image</th>
+            <th scope="col">Delete</th>
         </tr>
     </thead>
     <tbody class="table">
@@ -31,7 +32,12 @@
         <tr>
             <td>{{ item }}</td>
             <td>{{ item.item.total_price }}</td>
-            <td>Image link here</td>
+            <td><a href="{{ item.item.image_url }}">Image Link</a></td>
+            <td><form method="post" action="{% url 'delete' item.pk %}" style="display: inline-block;">
+                        {% csrf_token %}
+                        <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
         </tr>
     {% endfor %}
 
@@ -58,7 +64,7 @@
         <tr>
             <td>{{ item }}</td>
             <td>{{ item.item.total_price }}</td>
-            <td>Image link here</td>
+            <td><a href="{{ item.item.image_url }}">Image Link</a></td>
             <td><form method="post" action="{% url 'approve' item.pk %}" style="display: inline-block;">
                         {% csrf_token %}
                         <button class="btn btn-success">Approve</button>
@@ -72,5 +78,5 @@
 </div>
 {% endif %}
 
-<h3 class="padded">Total of what George owes you: ${{ money_owed }}</h3>
+<h3 class="padded">Total of what George owes: ${{ money_owed }}</h3>
 {% endblock content %}

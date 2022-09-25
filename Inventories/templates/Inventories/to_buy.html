@@ -2,7 +2,7 @@
 
 {% extends "Inventories/base.html" %}
 {% block content %}
-<h3 class="padded">This is where we mark what we are buying.</h3>
+<h3 class="padded">These are the things George needs.</h3>
 
 
 {% if needed_inventory_items %}
@@ -21,7 +21,7 @@
         <tr>
             <td>{{ item }}</td>
             <td>{{ item.item.total_price }}</td>
-            <td>Image link here</td>
+            <td><a href="{{ item.item.image_url }}">Image Link</a></td>
             <td><form method="post" action="{% url 'purchased' item.pk %}" style="display: inline-block;">
                         {% csrf_token %}
                         <button class="btn btn-success">Purchased</button>
@@ -36,7 +36,7 @@
 {% endif %}
 
 <br>
-
+<h3 class="padded">Items you have purchased and are waiting for reimbursement.</h3>
 {% if purchased_items %}
 <div class="padded">
     <table class="table table-striped" cellpadding="1500">
