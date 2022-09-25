@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 
 # Create your models here.
@@ -31,15 +32,22 @@ class Vending_Inventory(models.Model):
 
 class Purchase_History(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    purchase_date = models.DateField()
+    purchase_date = models.DateField(default=datetime.now)
+
+    class Meta:
+        verbose_name_plural = "Purchase History"
+
+    def __str__(self):
+        return str(self.item) + " - " + str(self.purchase_date)
 
 
 class Needed_Inventory(models.Model):
-    # item = models.ForeignKey(Item, on_delete=models.CASCADE)
-    item = models.OneToOneField(Item, on_delete=models.CASCADE, related_name='neededinvs')
-    pending = models.BooleanField(default=False)
+    item = models.OneToOneField(Item, on_delete=models.CASCADE)
     purchased = models.BooleanField(default=False)
     admin_approved = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = "Needed Inventory"
 
     def __str__(self):
         return str(self.item)

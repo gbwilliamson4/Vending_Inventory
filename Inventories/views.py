@@ -94,8 +94,36 @@ def calculate_money_owed(queryset):
     for item in queryset:
         money_owed += item.item.total_price
 
-    return money_owed/2
+    return money_owed / 2
 
 
 def purchased(request, pk):
-    return HttpResponse(f"Hello. This is the index page. Primary key is: {pk}")
+    item = Needed_Inventory.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        item.purchased = True
+        item.save()
+
+    return redirect('to_buy')
+
+
+def approve(request, pk):
+    item = Needed_Inventory.objects.get(pk=pk)
+    print(item.item.pk)
+    if request.method == "POST":
+        # Save item to purchase history and then delete from Needed_Inventory
+        b = Purchase_History(item=item.item)
+        b.save()
+
+        # delete instance of item in Needed_Inventory
+        item.delete()
+
+    return redirect('needed_inventory')
+
+
+def purchase_history(request):
+    p_history = Purchase_History.objects.all().order_by('-purchase_date')
+    context = {'p_history': p_history}
+
+    return render(request, 'Inventories/purchase_history.html', context)
+    # return HttpResponse("Hello. This is the purchase history page.")

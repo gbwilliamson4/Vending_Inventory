@@ -22,7 +22,11 @@
             <td>{{ item }}</td>
             <td>{{ item.item.total_price }}</td>
             <td>Image link here</td>
-            <td>Purchase btn here.</td>
+            <td><form method="post" action="{% url 'purchased' item.pk %}" style="display: inline-block;">
+                        {% csrf_token %}
+                        <button class="btn btn-success">Purchased</button>
+                </form>
+            </td>
         </tr>
     {% endfor %}
 

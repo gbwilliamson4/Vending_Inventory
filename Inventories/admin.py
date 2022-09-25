@@ -4,3 +4,4 @@ from .models import *
 
 admin.site.register(Item)
 admin.site.register(Needed_Inventory)
+admin.site.register(Purchase_History)

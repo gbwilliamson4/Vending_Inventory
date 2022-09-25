@@ -59,7 +59,11 @@
             <td>{{ item }}</td>
             <td>{{ item.item.total_price }}</td>
             <td>Image link here</td>
-            <td>Admin Approve Btn Here</td>
+            <td><form method="post" action="{% url 'approve' item.pk %}" style="display: inline-block;">
+                        {% csrf_token %}
+                        <button class="btn btn-success">Approve</button>
+                </form>
+            </td>
         </tr>
     {% endfor %}
 
@@ -67,4 +71,6 @@
     </table>
 </div>
 {% endif %}
+
+<h3 class="padded">Total of what George owes you: ${{ money_owed }}</h3>
 {% endblock content %}
