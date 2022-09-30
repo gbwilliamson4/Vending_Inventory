@@ -25,21 +25,12 @@ class Item_Form(ModelForm):
         labels = {'name': 'Item Name', 'quantity': 'Quantity', 'total_price': 'Total Price', }
 
 
-# class Needed_Inventory_Form(ModelForm):
-#     required_css_class = 'form-control'
-#     item = forms.ModelChoiceField(queryset=Item.objects.order_by('name'))
-#
-#     class Meta:
-#         model = Needed_Inventory
-#         fields = ['item']
-#         labels = {'item': 'Item Name'}
-#
-#         # widgets = {
-#         #     # 'item': forms.ComboField(),
-#         #     'item': forms.Select(attrs={'class': 'form-control'}),
-#         # }
-
 class Needed_Inventory_Form(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super(Needed_Inventory_Form, self).__init__(*args, **kwargs)
+        self.fields['item'].queryset = self.fields['item'].queryset.order_by('name')
+
     class Meta:
         model = Needed_Inventory
         ordering = ['item']
@@ -51,10 +42,8 @@ class Needed_Inventory_Form(ModelForm):
 
         labels = {'item': 'Item Name'}
 
-    def __init__(self):
-        super(Needed_Inventory_Form, self).__init__()
-        self.fields['item'].queryset = self.fields['item'].queryset.order_by('name')
 
+# # This one is the original. It works fine, its just not in order.
 # class Needed_Inventory_Form(ModelForm):
 #     class Meta:
 #         model = Needed_Inventory
