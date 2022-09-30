@@ -163,5 +163,3 @@ def add_stock_history(request, pk):
 
     return redirect('stock_history')
 
-def temp_function():
-    pass
