@@ -162,3 +162,6 @@ def add_stock_history(request, pk):
         # messages.success(request, 'Guess successfully submitted!')
 
     return redirect('stock_history')
+
+def temp_function():
+    pass
