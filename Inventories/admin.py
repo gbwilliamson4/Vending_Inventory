@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(Item)
 admin.site.register(Needed_Inventory)
 admin.site.register(Purchase_History)
+admin.site.register(Vending_Location)
+admin.site.register(Stocking_History)

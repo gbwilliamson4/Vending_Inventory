@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "Inventories/base.html" %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 
-</body>
-</html>
+{% if locations %}
+  {% for location in locations %}
+    <div class="container p-3 my-3 border bg-light">
+      <h1 class="text text-center">{{ location }}</h1>
+        <form method="post" action="{% url 'add_stock_history' location.pk %}">
+          {% csrf_token %}
+          <div class="d-grid gap-2">
+            <button class="btn btn-primary">Stocked</button>
+          </div>
+        </form>
+    </div>
+    <br><br>
+  {% endfor %}
+  {% else %}
+    <div class="container p-3 my-3 border bg-light">
+      <h1 class="text text-center">No Locations Added.</h1>
+    </div>
+{% endif %}
+
+{% endblock content %}

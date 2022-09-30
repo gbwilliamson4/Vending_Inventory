@@ -4,6 +4,8 @@ from .models import *
 from .forms import *
 import math
 from django.db.models import Sum
+from django.utils import timezone
+from django.contrib import messages
 
 
 # Create your views here.
@@ -136,3 +138,27 @@ def delete(request, pk):
         item.delete()
 
     return redirect('needed_inventory')
+
+
+def stock(request):
+    locations = Vending_Location.objects.all()
+    context = {'locations': locations}
+    # messages.success(request, 'Guess successfully submitted!')
+    return render(request, 'Inventories/locations.html', context)
+
+
+def stock_history(request):
+    history = Stocking_History.objects.all().order_by('-stock_date')
+    context = {'history': history}
+    return render(request, 'Inventories/stock_history.html', context)
+
+
+def add_stock_history(request, pk):
+    location = Vending_Location.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        entry = Stocking_History(location=location)
+        entry.save()
+        # messages.success(request, 'Guess successfully submitted!')
+
+    return redirect('stock_history')

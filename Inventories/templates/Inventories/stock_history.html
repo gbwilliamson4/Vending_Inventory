@@ -1,0 +1,29 @@
+{% extends "Inventories/base.html" %}
+{% block content %}
+
+{% if history %}
+<table class="table table-striped" cellpadding="1500">
+    <thead>
+        <tr>
+            <th scope="col">Detail</th>
+        </tr>
+    </thead>
+    <tbody class="table">
+    {% for item in history %}
+    <tr>
+        <td>{{ item }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% else %}
+
+<p>No history yet.</p>
+
+{% endif %}
+
+
+{% endblock content %}
