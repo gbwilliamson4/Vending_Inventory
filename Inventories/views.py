@@ -75,7 +75,7 @@ def needed_inventory(request):
         except ValueError:
             print("there was an error.")
 
-    context = {'needed_inventory_items': needed_inventory_items, 'purchased_items': purchased_items,
+    context = {'needed_inventory_items': needed_inventory_items,
                'money_owed': money_owed, 'form': form}
     return render(request, 'Inventories/needed_inventory.html', context)
 
