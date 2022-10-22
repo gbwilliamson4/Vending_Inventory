@@ -96,8 +96,8 @@ def calculate_money_owed(queryset):
     for item in queryset:
         money_owed += item.item.total_price
 
-    return money_owed / 2
-
+    # return money_owed / 2
+    return money_owed
 
 def purchased(request, pk):
     item = Needed_Inventory.objects.get(pk=pk)

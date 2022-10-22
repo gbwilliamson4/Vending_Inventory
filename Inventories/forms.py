@@ -24,7 +24,8 @@ class Item_Form(ModelForm):
 
         labels = {'name': 'Item Name', 'quantity': 'Quantity', 'total_price': 'Total Price', }
 
-
+# How to re order things in modelform:
+# https://stackoverflow.com/questions/2997168/how-do-i-specify-an-order-of-values-in-drop-down-list-in-a-django-modelform
 class Needed_Inventory_Form(ModelForm):
 
     def __init__(self, *args, **kwargs):
