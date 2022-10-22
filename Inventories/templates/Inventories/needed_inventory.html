@@ -28,6 +28,7 @@
             <th scope="col">Total Price</th>
             <th scope="col">Image</th>
             <th scope="col">Delete</th>
+            <th scope="col">Purchase</th>
         </tr>
     </thead>
     <tbody class="table">
@@ -39,6 +40,11 @@
             <td><form method="post" action="{% url 'delete' item.pk %}" style="display: inline-block;">
                         {% csrf_token %}
                         <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+            <td><form method="post" action="{% url 'approve' item.pk %}" style="display: inline-block;">
+                        {% csrf_token %}
+                        <button class="btn btn-success">Purchased</button>
                 </form>
             </td>
         </tr>

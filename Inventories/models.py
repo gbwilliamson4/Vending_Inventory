@@ -45,8 +45,8 @@ class Purchase_History(models.Model):
 
 class Needed_Inventory(models.Model):
     item = models.OneToOneField(Item, on_delete=models.CASCADE)
-    purchased = models.BooleanField(default=False)
-    admin_approved = models.BooleanField(default=False)
+    # purchased = models.BooleanField(default=False)
+    # admin_approved = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "Needed Inventory"
