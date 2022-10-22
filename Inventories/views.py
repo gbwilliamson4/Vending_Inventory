@@ -59,10 +59,10 @@ def calculate_margin(markup, price_per):
 def needed_inventory(request):
     needed_inventory_items = Needed_Inventory.objects.filter(purchased=False)
     # purchased_items = Needed_Inventory.objects.filter(purchased=True)  # These will be things that I need to pay on.
-    purchased_items = Needed_Inventory.objects.all()
+    # purchased_items = Needed_Inventory.objects.all()
     # Once the purchased items have been paid on, I'll admin_approve them to cause them to be deleted from the table
     # and moved to a purchase history table fro record keeping.
-    money_owed = calculate_money_owed(purchased_items)
+    money_owed = calculate_money_owed(needed_inventory_items)
 
     if request.method != 'POST':
         form = Needed_Inventory_Form()
