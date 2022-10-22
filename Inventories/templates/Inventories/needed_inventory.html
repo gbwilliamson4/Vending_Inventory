@@ -51,30 +51,7 @@
 
 <br>
 
-{% if purchased_items %}
-<div class="container p-3 my-3 border">
-    <table class="table table-striped" cellpadding="1500">
-    <thead>
-        <tr>
-            <th scope="col">Item Name</th>
-            <th scope="col">Total Price</th>
-            <th scope="col">Image</th>
-            <th scope="col">Admin Approval</th>
-        </tr>
-    </thead>
-    <tbody class="table">
-    {% for item in purchased_items %}
-        <tr>
-            <td>{{ item }}</td>
-            <td>{{ item.item.total_price }}</td>
-            <td><a href="{{ item.item.image_url }}">Image Link</a></td>
-            <td><form method="post" action="{% url 'approve' item.pk %}" style="display: inline-block;">
-                        {% csrf_token %}
-                        <button class="btn btn-success">Approve</button>
-                </form>
-            </td>
-        </tr>
-    {% endfor %}
+
 
     </tbody>
     </table>
