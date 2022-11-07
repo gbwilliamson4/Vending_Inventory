@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 # app_name = 'Inventories'
 urlpatterns = [
@@ -13,4 +14,13 @@ urlpatterns = [
     path('stock/', views.stock, name='stock'),
     path('stock/<int:pk>/add', views.add_stock_history, name='add_stock_history'),
     path('stock_history/', views.stock_history, name='stock_history'),
+
+    # path('income_master/'),
+    # path('income_detail'),
+
+    # API Endpoints
+    path('api/incomemaster/', views.IncomeMasterAPI.as_view()),
+    path('api/incomedetail/', views.IncomeDetailAPI.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)

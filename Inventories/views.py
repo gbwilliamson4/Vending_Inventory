@@ -3,9 +3,12 @@ from django.http import HttpResponse
 from .models import *
 from .forms import *
 import math
-from django.db.models import Sum
-from django.utils import timezone
 from django.contrib import messages
+
+from rest_framework import status, generics
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .serializers import IncomeMasterSerializer, IncomeDetailSerializer
 
 
 # Create your views here.
@@ -96,6 +99,7 @@ def calculate_money_owed(queryset):
     # return money_owed / 2
     return money_owed
 
+
 def purchased(request, pk):
     item = Needed_Inventory.objects.get(pk=pk)
 
@@ -160,3 +164,22 @@ def add_stock_history(request, pk):
 
     return redirect('stock_history')
 
+def income_master(request):
+    context = {}
+    return render(request, 'Inventories/income_master.html', context)
+
+def income_detail(request, daterange_id):
+    items = IncomeDetail.objects.filter(daterange=daterange_id) # I dont think it will work like this. I think I need to query the master model first.
+    context = {}
+    return render(request, 'Inventories/income_detail.html', context)
+
+
+# API Views
+class IncomeMasterAPI(generics.ListCreateAPIView):
+    queryset = IncomeMaster.objects.all()
+    serializer_class = IncomeMasterSerializer
+
+
+class IncomeDetailAPI(generics.ListCreateAPIView):
+    queryset = IncomeDetail.objects.all()
+    serializer_class = IncomeDetailSerializer

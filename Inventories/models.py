@@ -45,7 +45,8 @@ class Purchase_History(models.Model):
 
 class Needed_Inventory(models.Model):
     item = models.OneToOneField(Item, on_delete=models.CASCADE)
-    # purchased = models.BooleanField(default=False)
+    purchased = models.BooleanField(default=False)
+
     # admin_approved = models.BooleanField(default=False)
 
     class Meta:
@@ -61,3 +62,20 @@ class Stocking_History(models.Model):
 
     def __str__(self):
         return str(self.location) + " - " + str(self.stock_date)
+
+
+class IncomeMaster(models.Model):
+    daterange = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.daterange
+
+
+class IncomeDetail(models.Model):
+    daterange = models.ForeignKey(IncomeMaster, on_delete=models.CASCADE)
+    location = models.CharField(max_length=30)
+    transactions = models.IntegerField()
+    net_amnt = models.DecimalField(decimal_places=2, max_digits=6)
+
+    def __str__(self):
+        return self.location
