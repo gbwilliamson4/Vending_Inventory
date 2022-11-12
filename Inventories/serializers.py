@@ -11,4 +11,4 @@ class IncomeMasterSerializer(serializers.ModelSerializer):
 class IncomeDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = IncomeDetail
-        fields = ['id', 'daterange', 'location', 'transactions', 'net_amnt']
+        fields = ['id', 'daterange', 'location', 'transactions', 'net_amnt', 'type']

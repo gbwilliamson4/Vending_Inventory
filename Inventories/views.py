@@ -172,9 +172,10 @@ def income_master(request):
 
 
 def income_detail(request, daterange_pk):
-    items = IncomeDetail.objects.filter(
-        daterange=daterange_pk)  # I dont think it will work like this. I think I need to query the master model first.
-    context = {'items': items}
+    items_card = IncomeDetail.objects.filter(
+        daterange=daterange_pk, type="card")  # I dont think it will work like this. I think I need to query the master model first.
+    items_cash = IncomeDetail.objects.filter(type="cash")
+    context = {'items_card': items_card, 'items_cash': items_cash}
     return render(request, 'Inventories/income_detail.html', context)
     # return HttpResponse("you made it to the income detail page. Hooray!")
 

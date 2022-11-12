@@ -76,6 +76,7 @@ class IncomeDetail(models.Model):
     location = models.CharField(max_length=30)
     transactions = models.IntegerField()
     net_amnt = models.DecimalField(decimal_places=2, max_digits=6)
+    type = models.CharField(max_length=30, choices=(('cash', 'cash'), ('card', 'card')))
 
     def __str__(self):
         return self.location
