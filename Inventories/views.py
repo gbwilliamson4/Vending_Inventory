@@ -164,14 +164,19 @@ def add_stock_history(request, pk):
 
     return redirect('stock_history')
 
+
 def income_master(request):
-    context = {}
+    dateranges = IncomeMaster.objects.all().order_by('-id')
+    context = {'dateranges': dateranges}
     return render(request, 'Inventories/income_master.html', context)
 
-def income_detail(request, daterange_id):
-    items = IncomeDetail.objects.filter(daterange=daterange_id) # I dont think it will work like this. I think I need to query the master model first.
-    context = {}
+
+def income_detail(request, daterange_pk):
+    items = IncomeDetail.objects.filter(
+        daterange=daterange_pk)  # I dont think it will work like this. I think I need to query the master model first.
+    context = {'items': items}
     return render(request, 'Inventories/income_detail.html', context)
+    # return HttpResponse("you made it to the income detail page. Hooray!")
 
 
 # API Views

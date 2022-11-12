@@ -15,8 +15,8 @@ urlpatterns = [
     path('stock/<int:pk>/add', views.add_stock_history, name='add_stock_history'),
     path('stock_history/', views.stock_history, name='stock_history'),
 
-    # path('income_master/'),
-    # path('income_detail'),
+    path('income_master/', views.income_master, name='income_master'),
+    path('income_master/<int:daterange_pk>/', views.income_detail, name='income_detail'),
 
     # API Endpoints
     path('api/incomemaster/', views.IncomeMasterAPI.as_view()),
