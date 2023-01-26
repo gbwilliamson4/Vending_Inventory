@@ -1,1 +1,1 @@
-web gunicorn MyInventory.wsgi:application --log-file -
+web: python manage.py migrate && gunicorn MyInventory.wsgi
