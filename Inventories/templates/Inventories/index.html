@@ -25,11 +25,11 @@
             <th scope="col">Total Price</th>
             <th scope="col">Quantity</th>
             <th scope="col">Price Per</th>
-            <th scope="col">$0.50</th>
-            <th scope="col">$0.65</th>
-            <th scope="col">$0.75</th>
-            <th scope="col">$0.85</th>
             <th scope="col">$1.00</th>
+            <th scope="col">$1.50</th>
+            <th scope="col">$2.00</th>
+            <th scope="col">$3.00</th>
+            <th scope="col">$3.50</th>
         </tr>
     </thead>
     <tbody class="table">
@@ -39,11 +39,11 @@
             <td>{{ item.total_price }}</td>
             <td>{{ item.quantity }}</td>
             <td>{{ item.price_per }}</td>
-            <td>{{ item.margin_50 }}%</td>
-            <td>{{ item.margin_65 }}%</td>
-            <td>{{ item.margin_75 }}%</td>
-            <td>{{ item.margin_85 }}%</td>
             <td>{{ item.margin_100 }}%</td>
+            <td>{{ item.margin_150 }}%</td>
+            <td>{{ item.margin_200 }}%</td>
+            <td>{{ item.margin_300 }}%</td>
+            <td>{{ item.margin_350 }}%</td>
         </tr>
     {% endfor %}
 

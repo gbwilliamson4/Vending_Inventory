@@ -58,6 +58,7 @@ class Needed_Inventory(models.Model):
 
 class Stocking_History(models.Model):
     location = models.ForeignKey(Vending_Location, on_delete=models.CASCADE)
+    # stock_date = models.DateField(default=datetime.now)
     stock_date = models.DateTimeField(default=datetime.now)
 
     def __str__(self):

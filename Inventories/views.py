@@ -20,14 +20,21 @@ def index(request):
 
     for item in items:
         item.price_per = round(calculate_price_per(item.total_price, item.quantity), 2)
-        item.margin_50 = math.trunc(calculate_margin(.50, item.price_per) * 100)
-        item.margin_65 = math.trunc(calculate_margin(.65, item.price_per) * 100)
-        item.margin_75 = math.trunc(calculate_margin(.75, item.price_per) * 100)
-        item.margin_85 = math.trunc(calculate_margin(.85, item.price_per) * 100)
-        item.margin_100 = math.trunc(calculate_margin(1, item.price_per) * 100)
+        # item.margin_50 = math.trunc(calculate_margin(.50, item.price_per) * 100)
+        # item.margin_65 = math.trunc(calculate_margin(.65, item.price_per) * 100)
+        # item.margin_75 = math.trunc(calculate_margin(.75, item.price_per) * 100)
+        # item.margin_85 = math.trunc(calculate_margin(.85, item.price_per) * 100)
+        # item.margin_100 = math.trunc(calculate_margin(1, item.price_per) * 100)
         # print(math.trunc(item.margin_75))
         # print(item.price_per)
         # print(item.margin_100)
+
+        item.margin_100 = math.trunc(calculate_margin(1, item.price_per) * 100)
+        item.margin_150 = math.trunc(calculate_margin(1.50, item.price_per) * 100)
+        item.margin_200 = math.trunc(calculate_margin(2, item.price_per) * 100)
+        item.margin_300 = math.trunc(calculate_margin(3, item.price_per) * 100)
+        item.margin_350 = math.trunc(calculate_margin(3.5, item.price_per) * 100)
+
 
     if request.method != 'POST':
         form = Item_Form()
